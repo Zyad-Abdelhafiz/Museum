@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,800;1,900&family=Space+Mono&display=swap"
+            rel="stylesheet">
+        <title>Check Out</title>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+
+        <style>
+            table {
+                border: 0px;
+                width: 50%;
+                border-collapse: collapse;
+                margin: auto;
+                background-color: #B8AD98;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #a9a9a9;
+
+            }
+
+            tr:hover {
+                background-color: #000000;
+            }
+
+        </style>
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyA79X9r7JxWI_Itm0K2yOkr8aIEPmDS-_A",
+                authDomain: "test-c9e4e.firebaseapp.com",
+                databaseURL: "https://test-c9e4e-default-rtdb.firebaseio.com",
+                projectId: "test-c9e4e",
+                storageBucket: "test-c9e4e.appspot.com",
+                messagingSenderId: "825540492209",
+                appId: "1:825540492209:web:d71c8683ab1ea7be7a1b90",
+            };
+
+            // Get a reference to the database service
+            firebase.initializeApp(firebaseConfig);
+            var database = firebase.database();
+            // Get data from Firebase
+            var contactFormDB = database.ref("contactForm").limitToLast(1);
+            contactFormDB.once('value', function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    console.log("The data is " + childData);
+                    document.getElementById("data").innerHTML += "<table><tr><th>Name</th><th>Email ID</th><th>Monument</th><th>Quantity</th></tr><tr><td>" + childData.name + "</td><td>" + childData.emailid + "</td><td>" + childData.monument + "</td><td>" + childData.quantity + "</td></tr></table>";
+
+                });
+            });
+
+            var contactFormDB = database.ref("contactForm");
+            contactFormDB.once('value', function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    console.log("The data is " + childData);
+                    document.getElementById("data2").innerHTML += `
+<table>
+  <tr style="background-color: #884A39;">
+    <th>Name</th>
+    <th>Monument</th>
+    <th>Quantity</th>
+  </tr>
+  <tr style="background-color: #C38154;">
+    <td>${childData.name}</td> <br>
+    <td>${childData.monument}</td><br>
+    <td>${childData.quantity}</td><br>
+  </tr>
+</table>`;
+
+
+                });
+            });
+
+        </script>
+    </head>
+
+    <body class="lastbody">
+
+        <!-- header -->
+        <header class="lastheader">
+
+            <a href="index.html" class="logo"><img class="logopic"
+                    src="https://i.ibb.co/KxNmW4j/ZYAD-S-MUSEUM-basicfile.png" alt=""></a>
+
+            <nav class="navigation">
+                <a href="King_Tutankhamun.html" target=' _blank'>King Tutankhamun</a>
+                <a href="Sphinx_III.html" target=' _blank'>Sphinx III</a>
+                <a href="Temple_Nefertiti.html" target=' _blank'>Temple of Nefertiti</a>
+                <a href="indexcv.html" target=' _blank'>CONTACT WITH ME</a>
+                <a href="ticket.html" target=' _blank'>Buy ticket
+                </a>
+
+            </nav>
+
+        </header>
+
+
+        <section class="last">
+            <center> <img class="lastimg" src="https://media.tenor.com/Mw__8SvDbi8AAAAC/checkmark-black.gif" alt="">
+            </center>
+            <center>
+                <p class="lastp">Your Ticket Is Booked Successfully</p>
+                <p class="lastp">Your Ticket information</p>
+                <ul id="data"></ul>
+                <p class="lastp">Others Ticket information</p>
+                <ul id="data2"></ul>
+            </center>
+            <!-- <center>
+                <p id="demo"></p>
+            </center> -->
+        </section>
+
+
+
+
+
+
+
+
+
+    </body>
+
+</html>
