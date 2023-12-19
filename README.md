@@ -5,7 +5,7 @@
 <h1 align="center">Museum</h1>
 
 <p align="center">
- <img src="https://i.ibb.co/5rSq2rq/ZYAD-S-MUSEUM-basic-file.png" alt="logo2" width="400" style="margin-top:400px;">
+ <img src="https://i.ibb.co/SNWbLjV/tickrize-high-resolution-logo-transparent-4.png" alt="logo2" width="400" style="margin-top:400px;">
 
 </p>
 
